@@ -10,7 +10,7 @@ Vagrant.configure(2) do |config|
   #   10.0.0.1    - 10.255.255.254
   #   172.16.0.1  - 172.31.255.254
   #   192.168.0.1 - 192.168.255.254
-  config.vm.network :private_network, ip: "192.168.22.30"
+  config.vm.network :private_network, ip: "192.168.22.20"
   config.vm.network :forwarded_port, guest: 80, host: 8000
 
   # Enable agent forwarding over SSH connections
@@ -19,20 +19,12 @@ Vagrant.configure(2) do |config|
   # If using VirtualBox
   config.vm.provider :virtualbox do |vb|
 
-    vb.name = "ubuntu-openam"
+    vb.name = "ubuntu-apache"
     vb.customize ["modifyvm", :id, "--memory", "2048"]
     vb.customize ["modifyvm", :id, "--cpus", "1"]
 
   end
 
   config.vm.provision "shell", path: "setup.sh"
-  config.vm.provision "shell", path: "build.sh"
-
-
-# https://lists.forgerock.org/pipermail/openam/2014-October/018813.html
-# https://svn.forgerock.org/openam/tags/11.0.0/openam/
-# https://wikis.forgerock.org/confluence/display/openam/Build+OpenAM+from+Source
-# Need to install svn 1.6 for anon checkout of OpenAM...
-# svn co https://svn.forgerock.org/openam/tags/11.0.0/openam/
 
 end
