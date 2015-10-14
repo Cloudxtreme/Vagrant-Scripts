@@ -19,6 +19,8 @@ Vagrant.configure(2) do |config|
 
   end
 
+  # Should fail2ban be setup as well?
+
   config.vm.provision "shell", path: "setup-apache.sh"
   config.vm.provision "shell", path: "setup-php.sh"
 
