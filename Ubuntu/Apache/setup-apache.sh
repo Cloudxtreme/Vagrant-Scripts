@@ -23,6 +23,7 @@ sudo service apache2 restart
 #-A INPUT -p icmp -m state --state NEW --icmp-type 8 -j ACCEPT
 #
 ## Allow SSH connections.
+##  The -dport number should be the same port number you set in sshd_config
 #-A INPUT -p tcp --dport 22 -m state --state NEW -j ACCEPT
 #
 ## Allow HTTP and HTTPS connections from anywhere
@@ -52,6 +53,10 @@ sudo service apache2 restart
 #sudo iptables-restore < /etc/iptables.firewall.rules
 #sudo nano /etc/network/if-pre-up.d/firewall
 #sudo chmod +x /etc/network/if-pre-up.d/firewall
+
+# TODO: Change the sshd_config if necessary;
+#sudo nano /etc/ssh/sshd_config
+#sudo service ssh restart
 
 #sudo usermod -a -G [Group Name] www-data
 #sudo groupadd [Group Name]
