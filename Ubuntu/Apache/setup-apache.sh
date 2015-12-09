@@ -8,6 +8,9 @@ sudo apt-get install -qq apache2
 
 sudo a2enmod rewrite actions ssl
 
+#sudo mkdir /etc/apache2/ssl
+#sudo openssl req -x509 -nodes -days 1825 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+
 sudo service apache2 restart
 
 #sudo nano /etc/iptables.firewall.rules
@@ -58,8 +61,11 @@ sudo service apache2 restart
 #sudo nano /etc/ssh/sshd_config
 #sudo service ssh restart
 
-#sudo usermod -a -G [Group Name] www-data
+#sudo a2dissite *default
+#sudo service apache2 restart
+
 #sudo groupadd [Group Name]
+#sudo usermod -a -G [Group Name] www-data
 #sudo mkdir -p /web/[Web Application]/{app,log}
 #sudo chown -R [User Name] /web/[Web Application]/app/
 #sudo chgrp -R [Group Name] /web/[Web Application]/app/

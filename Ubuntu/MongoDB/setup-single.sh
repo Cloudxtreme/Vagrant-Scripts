@@ -6,8 +6,6 @@ sudo apt-get install -y mongodb-org
 
 sudo service mongod start
 
-# TODO: Add support to PHP...
-# sudo pecl install mongo
-# TODO: Add it to the php.ini file...
-# sudo nano /etc/php5/apache2/php.ini 
-# extension=mongo.so
+# How to install the PHP Driver;
+#sudo pecl install mongodb
+#sudo echo "extension=mongodb.so" >> /etc/php5/apache2/php.ini
