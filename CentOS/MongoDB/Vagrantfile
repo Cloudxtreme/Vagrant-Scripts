@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "centos"
+  config.vm.box_url = "file://../centos.box"
+
+  config.vm.network :private_network, ip: "192.168.22.60"
+  config.vm.network :forwarded_port, guest: 80, host: 8020
+
+  config.ssh.forward_agent = true
+
+  config.vm.provider :virtualbox do |vb|
+
+    vb.name = "centos-mongo"
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    vb.customize ["modifyvm", :id, "--cpus", "1"]
+
+  end
+
+  config.vm.provision "file", source: "mongodb-org-3.2.repo", destination: "/tmp/mongodb-org-3.2.repo"
+  config.vm.provision "shell", path: "setup-single.sh"
+
+end
